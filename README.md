@@ -15,13 +15,6 @@ Gesture Detection leverages object detection and machine learning to recognize p
 
 ---
 
-## 🎥 Demo / Screenshots
-
-*Coming soon!*
-
-
----
-
 ## 📋 Installation
 
 ### 🧰 Requirements
