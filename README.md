@@ -10,7 +10,7 @@ Gesture Detection leverages object detection and machine learning to recognize p
 
 - Recognizes **12 hard-coded hand signs**
 - Maps gestures to specific **keyboard keybinds**
-- Designed for use on **Windows systems**
+- Runs on **Windows** and **macOS** (separate notebook for each)
 - Built using **PyTorch**, **OpenCV**, and **Jupyter Notebook**
 
 ---
@@ -19,7 +19,7 @@ Gesture Detection leverages object detection and machine learning to recognize p
 
 ### 🧰 Requirements
 
-- Windows OS
+- Windows or macOS
 - Python 3.8+
 - Jupyter Notebook
 - Virtual Environment (recommended)
@@ -50,9 +50,30 @@ Gesture Detection leverages object detection and machine learning to recognize p
    - Run **each cell in sequential order** to initialize the webcam, load the model, and start detection.
    - There is an optional **camera testing cell** near the bottom of the notebook for debugging.
 
-6. **To exit the program**
+5. **To exit the program**
    - Press `q` in the webcam window to stop detection.
    - Make sure the **next notebook cell is queued to run** to ensure the camera feed and processes close properly.
+
+---
+
+### 🍎 macOS Setup
+
+Use `Gesture_Control_macOS.ipynb` instead of `Gesture_Control.ipynb`. It is the same notebook, but sends keypresses with `pynput` instead of the Windows-only `win32api`.
+
+1. **Install dependencies and open the notebook** (using [uv](https://docs.astral.sh/uv/))
+   ```bash
+   cd gesture-detection
+   uv run --with ultralytics --with pynput --with notebook jupyter notebook Gesture_Control_macOS.ipynb
+   ```
+
+2. **Grant permissions** in *System Settings → Privacy & Security*
+   - **Camera**: for the webcam feed
+   - **Accessibility**: so keypresses reach other apps (they silently do nothing without it)
+   - Grant both to the app the notebook runs from. When using VS Code's integrated terminal or Jupyter extension, that is **Visual Studio Code**, not Terminal. Add it with the **+** button if it is not listed.
+
+3. **Execution Notes**
+   - If the wrong camera opens (e.g. an iPhone via Continuity Camera), use the camera testing cell and change `cv2.VideoCapture(0)` to the right index.
+   - Keypresses go to whichever window is focused, so click into the target app after starting detection.
 
 ---
 
@@ -60,7 +81,28 @@ Gesture Detection leverages object detection and machine learning to recognize p
 
 - Start Jupyter Notebook and run each cell from top to bottom.
 - When a valid hand gesture is detected by the webcam, the corresponding **keyboard input will be sent** to the OS.
-- All gestures and their associated keybinds are **hard-coded** (chart to come in a future update).
+- All gestures and their associated keybinds are **hard-coded**:
+
+| Class ID | Hand Sign | Key |
+|:-:|---|:-:|
+| 0 | Bird | `O` |
+| 1 | Boar | `E` |
+| 2 | Dog | `D` |
+| 3 | Dragon | `L` |
+| 4 | Hare | `A` |
+| 5 | Horse | `J` |
+| 6 | Monkey | `I` |
+| 7 | Ox | `Q` |
+| 8 | Ram | `K` |
+| 9 | Rat | `S` |
+| 10 | Snake | `P` |
+| 11 | Tiger | `W` |
+
+### ✋ Hand Signs
+
+Reference chart for the 12 signs (source: [Naruto Wiki – Hand Seal](https://naruto.fandom.com/wiki/Hand_Seal)):
+
+[![The 12 basic hand seals](https://static.wikia.nocookie.net/naruto/images/a/a7/Hand.png/revision/latest?cb=20130912073828)](https://naruto.fandom.com/wiki/Hand_Seal)
 
 ---
 
@@ -71,7 +113,7 @@ Gesture Detection leverages object detection and machine learning to recognize p
 - Gesture-to-keyboard mapping for alternative input
 - Jupyter Notebook interface for step-by-step execution
 - Optional camera testing/debugging cell
-- Windows compatibility with virtual environment setup
+- Windows and macOS support
 
 ---
 
@@ -97,7 +139,7 @@ Contributions are welcome! If you’d like to help improve this project:
 Ideas for future contributions:
 - Custom gesture training support
 - Editable keybind mapping
-- Cross-platform compatibility (Linux, macOS)
+- Linux compatibility
 
 ---
 
